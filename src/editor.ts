@@ -19,7 +19,7 @@ interface MetaData {
     };
 }
 
-const initialMetaData = {
+const initialMetaData: MetaData = {
     id: "{Skill ID}",
     grade: 0,
     defVersion: 1,
