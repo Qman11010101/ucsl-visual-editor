@@ -1,0 +1,23 @@
+:root {
+    color-scheme: light dark;
+
+    --background-color-light: #eee;
+    --background-color-dark: #333;
+    --background-color: light-dark(var(--background-color-light), var(--background-color-dark));
+
+    --text-color-light: #333;
+    --text-color-dark: #eee;
+    --text-color: light-dark(var(--text-color-light), var(--text-color-dark));
+
+    --border-color-light: var(--text-color-light);
+    --border-color-dark: var(--text-color-dark);
+    --border-color: var(--text-color);
+
+    --link-color-light: #1461a8;
+    --link-color-dark: #a2bdd6;
+    --link-color: light-dark(var(--link-color-light), var(--link-color-dark));
+
+    --link-hover-color-light: #5883ac;
+    --link-hover-color-dark: #556069;
+    --link-hover-color: light-dark(var(--link-hover-color-light), var(--link-hover-color-dark));
+}

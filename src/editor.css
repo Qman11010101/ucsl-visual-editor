@@ -1,0 +1,78 @@
+@import url("./common.css");
+
+:root {
+    --input-background-color: #fff;
+    --input-text-color: #000;
+    --input-padding: 5px;
+
+    --input-disabled-background-color: #ccc;
+    --input-disabled-text-color: #333;
+
+    --input-focused-background-color: #d6f3ff;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    display: block;
+    font-family: "Noto Sans JP", sans-serif;
+    padding: var(--input-padding);
+    border: 2px solid var(--border-color-light);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
+
+    &:focus {
+        outline: none;
+        background-color: var(--input-focused-background-color);
+    }
+
+    &:disabled {
+        background-color: var(--input-disabled-background-color);
+        color: var(--input-disabled-text-color);
+    }
+}
+
+input[type="text"] {
+    width: 200px;
+}
+
+input[type="number"] {
+    width: 80px;
+}
+
+#editor-meta-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.editor-meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+
+    .meta-item-label {
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    .meta-description-text {
+        width: min(400px, 100%);
+
+    }
+}
+
+.meta-displaier {
+    grid-column: 1 / 3;
+    width: fit-content;
+    margin: 0 auto;
+
+    .meta-displaier-value {
+        font-family: "Noto Mono", monospace;
+    }
+}

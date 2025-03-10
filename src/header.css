@@ -1,0 +1,55 @@
+@import url("./common.css");
+
+:root {
+    --header-background-color: light-dark(#fff, #222);
+    --header-clickables-hover-color: light-dark(#eee, #444);
+    --header-height: 50px;
+    --header-visual-padding: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--header-background-color);
+
+    .header-title-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h1 {
+            margin: 0;
+            padding: var(--header-visual-padding);
+            font-size: 1.5rem;
+        }
+    }
+
+    .header-menus-wrapper {
+        display: flex;
+        align-items: end;
+
+        .theme-toggle,
+        .document-link {
+            display: block;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--header-clickables-hover-color);
+            }
+        }
+
+        img {
+            width: calc(var(--header-height) - calc(var(--header-visual-padding) * 2));
+            height: calc(var(--header-height) - calc(var(--header-visual-padding) * 2));
+            margin: var(--header-visual-padding);
+        }
+    }
+}

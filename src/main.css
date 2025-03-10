@@ -1,0 +1,67 @@
+@import url("./common.css");
+
+/* Premitive elements */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    width: fit-content;
+    font-weight: bold;
+}
+
+h1 {
+    margin: auto;
+    margin-top: 50px;
+    font-size: 2rem;
+}
+
+h2 {
+    margin: auto;
+    margin-top: 15px;
+    font-size: 1.75rem;
+}
+
+h3 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--link-hover-color);
+        text-decoration: underline;
+    }
+
+    &:visited {
+        color: var(--link-color);
+    }
+}
+
+/* Semantic elements */
+
+main,
+footer {
+    margin: 30px auto 0;
+    width: min(calc(100% - 60px), 800px);
+}
+
+footer {
+    padding: 10px;
+    border-top: 2px solid var(--border-color);
+    text-align: center;
+}
