@@ -8,7 +8,7 @@ import lightRemoveIcon from "./assets/light-remove.svg";
 
 import { currentMode } from "./root-settings.ts";
 
-const { b, div, section, input, label, span, img } = van.tags;
+const { b, div, section, input, label, span, img, button } = van.tags;
 
 interface MetaData {
     id: string;
@@ -37,11 +37,11 @@ const initialMetaData: MetaData = {
 };
 const metaData = reactive(initialMetaData);
 
-const Meta = () => {
+export const Meta = () => {
     return section(
         { id: "editor-meta-wrapper" },
         section(
-            { class: "editor-meta" },
+            { class: "editor-meta form-short" },
             label(
                 { class: "meta-item-label", for: "meta-skill-id" },
                 "スキル識別子",
@@ -146,19 +146,15 @@ const Meta = () => {
                         metaData.description.l2 = e.target.value;
                     },
                 }),
-                img({
-                    style: "display: block",
-                    src: van.derive(() =>
-                        currentMode.val ? darkRemoveIcon : lightRemoveIcon,
-                    ),
-                }),
+                button(
+                    { class: "inline-button" },
+                    img({
+                        src: van.derive(() =>
+                            currentMode.val ? darkRemoveIcon : lightRemoveIcon,
+                        ),
+                    }),
+                ),
             ),
         ),
     );
-};
-
-const Script = () => div();
-
-export const Editor = () => {
-    return div({ class: "editor" }, Meta(), Script());
 };

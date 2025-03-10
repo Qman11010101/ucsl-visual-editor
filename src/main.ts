@@ -1,14 +1,15 @@
 // import van from "vanjs-core";
 import van from "vanjs-core/debug";
-import { Editor } from "./editor.ts";
+import { Meta } from "./editor-meta.ts";
+import { Script } from "./editor-script.ts";
 import { Header } from "./header.ts";
 import "./main.css";
 import "./header.css";
 
-const { p, main, footer } = van.tags;
+const { p, main, div, footer } = van.tags;
 
 const Main = () => {
-    return main(Editor());
+    return main(div({ class: "editor" }, Meta(), Script()));
 };
 
 const StaticFooter = () => {

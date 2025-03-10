@@ -20,4 +20,8 @@
     --link-hover-color-light: #5883ac;
     --link-hover-color-dark: #556069;
     --link-hover-color: light-dark(var(--link-hover-color-light), var(--link-hover-color-dark));
+
+    --inline-button-hover-color-light: #ccc;
+    --inline-button-hover-color-dark: #555;
+    --inline-button-hover-color: light-dark(var(--inline-button-hover-color-light), var(--inline-button-hover-color-dark));
 }
