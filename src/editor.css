@@ -9,15 +9,18 @@
     --input-disabled-text-color: #333;
 
     --input-focused-background-color: #d6f3ff;
+
+    --textarea-line-height: 1.5;
 }
 
 input[type="text"],
 input[type="number"],
+textarea,
 select {
     display: block;
     font-family: "Noto Sans JP", sans-serif;
     padding: var(--input-padding);
-    border: 2px solid var(--border-color-light);
+    border: 2px solid var(--border-color);
     border-radius: 5px;
     font-size: 1rem;
     background-color: var(--input-background-color);
@@ -52,39 +55,14 @@ input[type="number"] {
     width: min(100%, 1000px);
     margin: 0 auto;
 
-    .meta-item-label {
-        font-weight: bold;
-        line-height: 1;
-    }
-
     input[type="text"].meta-input-short {
         width: 200px;
     }
+}
 
-    .meta-item-value-sub-wrapper {
-        display: flex;
-        width: 100%;
-
-        input {
-            width: 100%;
-        }
-
-        .inline-button {
-            display: block;
-            padding: 4px;
-            border: none;
-            background-color: var(--background-color);
-            cursor: pointer;
-
-            &:hover {
-                opacity: 0.5;
-            }
-
-            img {
-                width: 25px;
-            }
-        }
-    }
+.meta-item-label {
+    font-weight: bold;
+    line-height: 1;
 }
 
 .form-short {
@@ -98,5 +76,31 @@ input[type="number"] {
 
     .meta-displaier-value {
         font-family: "Noto Mono", monospace;
+    }
+}
+
+.editor-description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .editor-description-control {
+        display: flex;
+        gap: 10px;
+
+        button {
+            span {
+                font-family: 'Noto Mono', monospace;
+                font-weight: bold;
+            }
+        }
+    }
+
+    #meta-skill-description {
+        field-sizing: content;
+        min-height: calc(var(--textarea-line-height) * 1em);
+        max-height: calc(var(--textarea-line-height) * 4em);
+        resize: none;
+        scrollbar-width: none;
     }
 }

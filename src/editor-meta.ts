@@ -3,27 +3,10 @@ import van from "vanjs-core/debug";
 import { reactive } from "vanjs-ext";
 
 import "./editor.css";
-import darkRemoveIcon from "./assets/dark-remove.svg";
-import lightRemoveIcon from "./assets/light-remove.svg";
 
-import { currentMode } from "./root-settings.ts";
+const { b, div, section, input, label, span, button, textarea } = van.tags;
 
-const { b, div, section, input, label, span, img, button } = van.tags;
-
-interface MetaData {
-    id: string;
-    grade: number;
-    defVersion: number;
-    title: string;
-    description: {
-        l1: string;
-        l2: string;
-        l3: string;
-        l4: string;
-    };
-}
-
-const initialMetaData: MetaData = {
+const initialMetaData = {
     id: "{Skill ID}",
     grade: 0,
     defVersion: 1,
@@ -37,10 +20,9 @@ const initialMetaData: MetaData = {
 };
 const metaData = reactive(initialMetaData);
 
-export const Meta = () => {
-    return section(
-        { id: "editor-meta-wrapper" },
-        section(
+const MetaTopArr = () => {
+    return [
+        div(
             { class: "editor-meta form-short" },
             label(
                 { class: "meta-item-label", for: "meta-skill-id" },
@@ -97,7 +79,17 @@ export const Meta = () => {
                 () => `${metaData.id}_${metaData.grade}.ucsl`,
             ),
         ),
-        section(
+    ];
+};
+
+const MetaMidArr = () => {
+    const currentTextColor = van.state("#000000");
+    const ctcTagFormat = van.derive(() => {
+        return `<#c:${currentTextColor.val.replace("#", "")}>`;
+    });
+    van.derive(() => console.log(currentTextColor.val));
+    return [
+        div(
             { class: "editor-meta" },
             label(
                 { class: "meta-item-label", for: "meta-skill-name" },
@@ -111,50 +103,33 @@ export const Meta = () => {
                     metaData.title = e.target.value;
                 },
             }),
-            // スキル説明は1行以上4行以下
+        ),
+        div(
+            { class: "editor-description" },
             label(
-                {
-                    class: "meta-item-label",
-                    for: "meta-skill-description-1",
-                    id: "meta-skill-description-1-label",
-                },
-                "スキル説明",
-            ),
-            input({
-                type: "text",
-                class: "meta-item-value meta-description-text",
-                id: "meta-skill-description-1",
-                oninput: (e) => {
-                    metaData.description.l1 = e.target.value;
-                },
-            }),
-            label(
-                {
-                    class: "meta-item-label",
-                    for: "meta-skill-description-2",
-                    id: "meta-skill-description-2-label",
-                },
-                "スキル説明2",
+                { class: "meta-item-label", for: "meta-skill-description" },
+                "スキル説明（最大4行）",
             ),
             div(
-                { class: "meta-item-value-sub-wrapper" },
+                { class: "editor-description-control" },
                 input({
-                    type: "text",
-                    class: "meta-item-value meta-description-text",
-                    id: "meta-skill-description-2",
+                    type: "color",
                     oninput: (e) => {
-                        metaData.description.l2 = e.target.value;
+                        currentTextColor.val = e.target.value;
                     },
                 }),
-                button(
-                    { class: "inline-button" },
-                    img({
-                        src: van.derive(() =>
-                            currentMode.val ? darkRemoveIcon : lightRemoveIcon,
-                        ),
-                    }),
-                ),
+                button("文字色タグ", span(ctcTagFormat), "を挿入する"),
+                button("文字色初期化タグ", span("<#r>"), "を挿入する"),
             ),
+            textarea({ id: "meta-skill-description" }),
         ),
+    ];
+};
+
+export const Meta = () => {
+    return section(
+        { id: "editor-meta-wrapper" },
+        ...MetaTopArr(),
+        ...MetaMidArr(),
     );
 };

@@ -9,9 +9,10 @@
     --text-color-dark: #eee;
     --text-color: light-dark(var(--text-color-light), var(--text-color-dark));
 
-    --border-color-light: var(--text-color-light);
-    --border-color-dark: var(--text-color-dark);
-    --border-color: var(--text-color);
+    --border-color-light: var(#ccc);
+    --border-color-dark: var(#555);
+    /* --border-color: light-dark(var(--border-color-light), var(--border-color-dark)); */
+    --border-color: #777;
 
     --link-color-light: #1461a8;
     --link-color-dark: #a2bdd6;
