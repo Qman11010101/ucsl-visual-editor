@@ -3,8 +3,12 @@ import van from "vanjs-core/debug";
 import { reactive } from "vanjs-ext";
 
 import "./editor.css";
+import darkRemoveIcon from "./assets/dark-remove.svg";
+import lightRemoveIcon from "./assets/light-remove.svg";
 
-const { b, div, section, input, label, span } = van.tags;
+import { currentMode } from "./root-settings.ts";
+
+const { b, div, section, input, label, span, img } = van.tags;
 
 interface MetaData {
     id: string;
@@ -44,7 +48,7 @@ const Meta = () => {
             ),
             input({
                 type: "text",
-                class: "meta-item-value",
+                class: "meta-item-value meta-input-short",
                 id: "meta-skill-id",
                 oninput: (e) => {
                     // TODO: ファイル名として許容される文字のチェック
@@ -101,13 +105,13 @@ const Meta = () => {
             ),
             input({
                 type: "text",
-                class: "meta-item-value",
+                class: "meta-item-value meta-input-short",
                 id: "meta-skill-name",
                 oninput: (e) => {
                     metaData.title = e.target.value;
                 },
             }),
-            // スキル説明は1行以上4行以下。
+            // スキル説明は1行以上4行以下
             label(
                 {
                     class: "meta-item-label",
@@ -124,6 +128,31 @@ const Meta = () => {
                     metaData.description.l1 = e.target.value;
                 },
             }),
+            label(
+                {
+                    class: "meta-item-label",
+                    for: "meta-skill-description-2",
+                    id: "meta-skill-description-2-label",
+                },
+                "スキル説明2",
+            ),
+            div(
+                { class: "meta-item-value-sub-wrapper" },
+                input({
+                    type: "text",
+                    class: "meta-item-value meta-description-text",
+                    id: "meta-skill-description-2",
+                    oninput: (e) => {
+                        metaData.description.l2 = e.target.value;
+                    },
+                }),
+                img({
+                    style: "display: block",
+                    src: van.derive(() =>
+                        currentMode.val ? darkRemoveIcon : lightRemoveIcon,
+                    ),
+                }),
+            ),
         ),
     );
 };

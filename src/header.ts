@@ -1,19 +1,14 @@
 // import van from "vanjs-core";
 import van from "vanjs-core/debug";
 
+import { currentMode } from "./root-settings.ts";
+
 import darkDocumentIcon from "./assets/dark-document.svg";
 import darkTogglerIcon from "./assets/dark-toggler.svg";
 import lightDocumentIcon from "./assets/light-document.svg";
 import lightTogglerIcon from "./assets/light-toggler.svg";
 
 const { header, div, h1, img, a, button } = van.tags;
-const currentMode = van.state(
-    window.matchMedia("(prefers-color-scheme: dark)").matches,
-);
-
-van.derive(() => {
-    document.body.style.colorScheme = currentMode.val ? "dark" : "light";
-});
 
 const txtOpenDocument = "UCSLのドキュメントを開く";
 const txtToggleTheme = "ライトテーマ・ダークテーマを切り替える";
